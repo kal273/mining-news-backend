@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: mining-news-backend
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn mining_news.wsgi:application"
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: DEBUG
+        value: "False"
